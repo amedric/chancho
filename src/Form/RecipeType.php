@@ -14,7 +14,7 @@ class RecipeType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('createdAt')
+//            ->add('createdAt')
             ->add('rating')
             ->add('img')
             ->add('user')

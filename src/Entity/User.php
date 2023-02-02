@@ -50,6 +50,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    public function __toString() {
+        return $this->email;
+    }
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();

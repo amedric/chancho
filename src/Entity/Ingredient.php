@@ -28,6 +28,10 @@ class Ingredient
     #[ORM\ManyToOne(inversedBy: 'ingredients')]
     private ?Recipe $recipe = null;
 
+    public function __toString() {
+        return $this->recipe;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

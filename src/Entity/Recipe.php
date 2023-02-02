@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
@@ -43,8 +44,13 @@ class Recipe
     #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: Step::class)]
     private Collection $steps;
 
+    public function __toString() {
+        return $this->title;
+    }
+
     public function __construct()
     {
+//        $this->createdAt = new DateTime();
         $this->ingredients = new ArrayCollection();
         $this->steps = new ArrayCollection();
     }

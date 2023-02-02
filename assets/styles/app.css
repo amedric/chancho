@@ -1,3 +1,17 @@
+@import url('../styles/main.css');
+
+/* Colors */
+:root {
+    --chan-mainBackground: #EEEEEE;
+    --chan-fontColor: #797979;
+}
+
 body {
-    background-color: lightgray;
+    /*background-color: var(--chan-mainBackground);*/
+    /*color: var(--chan-mainBackground);*/
+    font-color: var(--chan-fontColor);
+}
+
+.headerColor {
+    background-color: var(--chan-mainBackground);
 }
