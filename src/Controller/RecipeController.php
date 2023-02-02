@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
+use App\Repository\CategoryRepository;
 use App\Repository\RecipeRepository;
+use Doctrine\DBAL\Exception;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,11 +44,16 @@ class RecipeController extends AbstractController
         ]);
     }
 
+    /**
+     * @throws Exception
+     */
     #[Route('/{id}', name: 'app_recipe_show', methods: ['GET'])]
-    public function show(Recipe $recipe): Response
+    public function show(Recipe $recipe, RecipeRepository $recipeRepository, string $id): Response
     {
-        return $this->render('recipe/show.html.twig', [
-            'recipe' => $recipe,
+        $recipes = $recipeRepository->findRecipesByUserId($this->getUser()->getId());
+//            $recipes = $recipeRepository->findRecipesByUserId($this->getUser()->getId());
+        return $this->render('recipe/myRecipes.html.twig', [
+            'recipes' => $recipes,
         ]);
     }
 

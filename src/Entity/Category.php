@@ -18,12 +18,8 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Recipe::class)]
+    #[ORM\OneToMany(mappedBy: 'categories', targetEntity: Recipe::class)]
     private Collection $recipes;
-
-    public function __toString() {
-        return $this->title;
-    }
 
     public function __construct()
     {
@@ -59,7 +55,7 @@ class Category
     {
         if (!$this->recipes->contains($recipe)) {
             $this->recipes->add($recipe);
-            $recipe->setCategory($this);
+            $recipe->setCategories($this);
         }
 
         return $this;
@@ -69,8 +65,8 @@ class Category
     {
         if ($this->recipes->removeElement($recipe)) {
             // set the owning side to null (unless already changed)
-            if ($recipe->getCategory() === $this) {
-                $recipe->setCategory(null);
+            if ($recipe->getCategories() === $this) {
+                $recipe->setCategories(null);
             }
         }
 

@@ -2,14 +2,19 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use App\Repository\RecipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
+#[Vich\Uploadable]
 class Recipe
 {
     #[ORM\Id]
@@ -35,14 +40,39 @@ class Recipe
     #[ORM\ManyToOne(inversedBy: 'recipes')]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'recipes')]
-    private ?Category $category = null;
-
     #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: Ingredient::class)]
     private Collection $ingredients;
 
     #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: Step::class)]
     private Collection $steps;
+
+    #[ORM\ManyToOne(inversedBy: 'recipes')]
+    private ?Category $categories = null;
+
+    #[Vich\UploadableField(mapping: 'recipe_file', fileNameProperty: 'recipe')]
+    #[Assert\File(
+        maxSize: '5M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
+    private ?File $recipeFile = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?DatetimeInterface $updatedAt = null;
+
+    public function setRecipeFile(File $image = null): Recipe
+    {
+        $this->recipeFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getRecipeFile(): ?File
+    {
+        return $this->recipeFile;
+    }
+
 
     public function __toString() {
         return $this->title;
@@ -132,18 +162,6 @@ class Recipe
         return $this;
     }
 
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Ingredient>
      */
@@ -200,6 +218,18 @@ class Recipe
                 $step->setRecipe(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategories(): ?Category
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(?Category $categories): self
+    {
+        $this->categories = $categories;
 
         return $this;
     }

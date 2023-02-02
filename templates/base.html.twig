@@ -41,8 +41,8 @@
         <a href="{{ path('app_home') }}" class="logo d-flex align-items-center  me-auto me-lg-0">
             <i class="bi bi-camera"></i>
             <h1>CHANCHO</h1>
-            <img src="{{ asset('/img/save/pig.png') }}" alt="" class="img-fluid">
         </a>
+{#        <img src="{{ asset('build/images/save/pig.png') }}" alt="" id="chn-imgLogo">#}
 
         <div class="chan-navbarContainer">
             {% include '/_includes/_navbar.html.twig' %}
@@ -53,18 +53,9 @@
     </div>
 </header>
 
-<section id="hero" class="hero d-flex flex-column justify-content-center align-items-center headerColor" data-aos="fade" data-aos-delay="1500">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6 text-center">
-                <h2>Welcome to Chancho</h2>
-                <p>where you can share your favourite recipes to the world</p>
-            </div>
-        </div>
-    </div>
-</section>
+{% block section %}{% endblock %}
 
-<main id="main" data-aos="fade" data-aos-delay="1500">
+<main id="main" data-aos="fade" data-aos-delay="1500" class="flex-row">
     {% block body %}{% endblock %}
 </main>
 

@@ -1,17 +1,6 @@
 @import url('../styles/main.css');
+@import url('../styles/myRecipeCqrds.css');
 
-/* Colors */
-:root {
-    --chan-mainBackground: #EEEEEE;
-    --chan-fontColor: #797979;
-}
-
-body {
-    /*background-color: var(--chan-mainBackground);*/
-    /*color: var(--chan-mainBackground);*/
-    font-color: var(--chan-fontColor);
-}
-
-.headerColor {
-    background-color: var(--chan-mainBackground);
+#chn-imgLogo{
+    height: 150px;
 }

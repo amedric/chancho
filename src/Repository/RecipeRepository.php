@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Recipe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Exception;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +38,33 @@ class RecipeRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function findRecipesByUserId(Int $id): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT r.id,
+                   r.user_id as userId,
+                   r.title,
+                   r.content,
+                   r.img,
+                   r.rating,
+                   r.categories_id as categoryId,
+                   r.created_at as createdAt
+            FROM recipe as r
+            where r.user_id = :id
+            order by r.created_at desc
+            ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery(['id' => $id]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
     }
 
 //    /**

@@ -1,0 +1,56 @@
+.chn-myRecipeContainer{
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    width: 80%;
+    gap: 30px
+}
+
+.chn-cardRecpContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 300px;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;}
+
+.chn-cardRecpImgContainer{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 15%;
+}
+
+.chn-cardRecipeImg {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 25px;
+    box-shadow: rgb(38, 57, 77) 0 20px 30px -10px;
+}
+
+.chn-cardRecpContentContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    width: 70%;
+    padding: 5px 20px 20px 20px;
+}
+
+.chn-cardRecpBtnCOntainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 10%;
+    gap: 20px;
+}
+
+.chn-btns{
+    background-color: #757500;
+    border: none;
+    width: 90px;
+}

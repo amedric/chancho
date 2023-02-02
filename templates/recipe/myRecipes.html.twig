@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Recipes{% endblock %}
+
+{% block section %}
+    <section id="hero" class="hero d-flex flex-column justify-content-center align-items-center headerColor" data-aos="fade" data-aos-delay="1500">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>My recipes</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid d-flex align-items-center flex-column chn-myRecipeContainer">
+    {% for recipe in recipes %}
+        <div class="chn-cardRecpContainer">
+            <div class="chn-cardRecpImgContainer">
+                <img src="{{ asset(recipe.img) }}" class="chn-cardRecipeImg" alt="...">
+            </div>
+            <div class="chn-cardRecpContentContainer">
+                <h2 class="chn-cardRecpTitle">{{ recipe.title }}</h2>
+                <p class="chn-cardRecpContent">{{ recipe.content }}</p>
+            </div>
+            <div class="chn-cardRecpBtnCOntainer">
+                <a href="{{ path('app_recipe_edit', {'id': recipe.id}) }}" class="btn btn-primary chn-btns">Edit</a>
+                {{ include('recipe/_delete_form.html.twig') }}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
