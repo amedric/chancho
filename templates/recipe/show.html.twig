@@ -2,22 +2,56 @@
 
 {% block title %}Ingredient{% endblock %}
 
+{% block section %}
+    <section id="hero" class="hero d-flex flex-column justify-content-center align-items-center" data-aos="fade" data-aos-delay="1500">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>
+                        <span>{{ recipe.title }}</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
 {% block body %}
-    <h1>{{ recipe.title }}</h1>
 
-    <table class="table">
-        <tbody>
-        <tr>
-            <th>content</th>
-            <td>{{ recipe }}</td>
-        </tr>
 
-        </tbody>
-    </table>
+    <main id="main" data-aos="fade" data-aos-delay="1500">
 
-    <a href="{{ path('app_ingredient_index') }}">back to list</a>
+        <!-- ======= About Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
 
-    <a href="{{ path('app_ingredient_edit', {'id': ingredient.id}) }}">edit</a>
+                <div class="row gy-4 justify-content-center">
+                    <div class="col-lg-4">
+                        <img src="{{ asset(recipe.img) }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-5 content">
+                        <h2>Ingredients</h2>
+                            <div class="col-lg-6">
+                                <ul>
+                                    {% for ingredient in ingredients %}
+                                    <li><i class="bi bi-chevron-right"></i> <strong>{{ ingredient.name }}</strong> <span>{{ ingredient.quantity }}</span><span>{{ ingredient.unit }}</span></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        <p class="py-3">
+                            Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis.
+                            Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus itaque neque. Aliquid amet quidem ut quaerat cupiditate. Ab et eum qui repellendus omnis culpa magni laudantium dolores.
+                        </p>
+                        <p class="m-0">
+                            Recusandae est praesentium consequatur eos voluptatem. Vitae dolores aliquam itaque odio nihil. Neque ut neque ut quae voluptas. Maxime corporis aut ut ipsum consequatur. Repudiandae sunt sequi minus qui et. Doloribus molestiae officiis.
+                            Soluta eligendi fugiat omnis enim. Numquam alias sint possimus eveniet ad. Ratione in earum eum magni totam.
+                        </p>
+                    </div>
+                </div>
 
-    {{ include('ingredient/_delete_form.html.twig') }}
+            </div>
+        </section><!-- End About Section -->
+
+    </main><!-- End #main -->
+
 {% endblock %}

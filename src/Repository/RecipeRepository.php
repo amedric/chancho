@@ -40,9 +40,6 @@ class RecipeRepository extends ServiceEntityRepository
         }
     }
 
-    /**
-     * @throws Exception
-     */
     public function findRecipesByUserId(Int $id): array
     {
         $conn = $this->getEntityManager()->getConnection();

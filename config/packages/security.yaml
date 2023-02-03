@@ -21,7 +21,6 @@ security:
                 login_path: app_login
                 check_path: app_login
                 default_target_path: app_home
-#                enable_csrf: true
 #            logout:
 #                path: app_logout
 #            secured_area:
@@ -42,7 +41,7 @@ security:
 #    # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/recipe, roles: ROLE_USER }
+        - { path: ^/recipe/myRecipes, roles: ROLE_USER }
         - { path: ^/ingredient, roles: ROLE_USER }
         - { path: ^/category, roles: ROLE_ADMIN }
 

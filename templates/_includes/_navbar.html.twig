@@ -1,12 +1,27 @@
+{% if app.user %}
+
 <nav id="navbar" class="navbar">
     <ul>
-        <li><a href="#" class="active">Recipe</a></li>
+        <li><a href="#" class="active">Recipes</a></li>
         <li class="dropdown"><a href="#"><span>{{ app.user.firstname }}</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-                <li><a href="{{ path('app_recipe_show', {'id': app.user.id}) }}">My Recipes</a></li>
+                <li><a href="{{ path('app_recipe_myRecipes', {'id': app.user.id}) }}">My recipes</a></li>
                 <li><a href="#">Add a recipe</a></li>
                 </li>
             </ul>
         </li>
     </ul>
 </nav>
+
+{% else %}
+
+    <nav id="navbar" class="navbar">
+        <ul>
+            <li><a href="{{ path('app_home') }}" class="active">Recipe</a></li>
+            <li><a href="{{ path('app_login') }}">Login</a></li>
+        </ul>
+    </nav>
+
+{% endif %}
+
+
