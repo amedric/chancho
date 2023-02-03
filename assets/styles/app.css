@@ -4,3 +4,9 @@
 #chn-imgLogo{
     height: 150px;
 }
+
+.chn-categoriesContainer{
+    display: flex;
+    flex-direction: row;
+
+}

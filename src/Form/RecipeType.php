@@ -29,7 +29,6 @@ class RecipeType extends AbstractType
                 },
             ])
             ->add('category', null, [
-                'placeholder' => 'Choose a category',
                 'choice_label' => 'title'
             ])
 //            ->add('recipeFile', VichFileType::class, [
